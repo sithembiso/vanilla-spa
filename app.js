@@ -56,5 +56,6 @@ class App {
   }
 }
 
+// Some comments to indicate changes
 window.app = new App(routes);
 window.app.run();
