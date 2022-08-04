@@ -1,3 +1,6 @@
+/**
+ * Tasks 
+ */
 class Tasks {
   key = "app_tasks";
   items = [];
@@ -9,12 +12,26 @@ class Tasks {
     }
   }
 
+  /**
+   * _getIndexByID 
+   * 
+   * An internal method for retrieving todos
+   * by id.
+   * @param {int} id 
+   * @returns boolean
+   */
   _getIndexByID(id) {
     return this.items.findIndex((item) => {
       return item.id === id;
     })
   }
 
+
+  /**
+   * Create: creates new task and adds it to the 
+   * available list of todos
+   * @param {string} title 
+   */
   create(title) {
     const id = Math.random()+"";
     this.items.push({
@@ -25,9 +42,20 @@ class Tasks {
     window.localStorage.setItem(this.key, JSON.stringify(this.items))
   }
 
+
+  /**
+   * List returns list of available items
+   * @returns [items]
+   */
+
   list() {
     return this.items;
   }
+
+  /**
+   * Togggles the current status of a specific todo
+   * @param {int} id 
+   */
 
   toggleDone(id) {
     const index = this._getIndexByID(id);
@@ -41,8 +69,25 @@ class Tasks {
     window.localStorage.setItem(this.key, JSON.stringify(this.items))
   }
 
+
+  /** 
+    * Deletes todo item from list by id
+    * @param {int} id
+  */
   delete(id) {
     this.items.splice(this._getIndexByID(id), 1);
+    window.localStorage.setItem(this.key, JSON.stringify(this.items))
+  }
+
+  /**
+   * Updates specific todo
+   * @param {int} id 
+   * @param {string} title 
+   */
+  updateTodo(id, title) {
+    const index = this._getIndexByID(id)
+    let todo = this.items[index]
+    todo.title = title
     window.localStorage.setItem(this.key, JSON.stringify(this.items))
   }
 
