@@ -1,5 +1,6 @@
 import { routes } from "./controllers/routes.js";
 
+// This is an application
 class App {
   name = "";
   version = "";
